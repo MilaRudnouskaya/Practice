@@ -1,23 +1,27 @@
+var someDiv = document.createElement("div")
+someDiv.id = 'someId'
 
-var currentAmount = 0
+var width1 = 500;
+var height1 = 300;
 
-function start() {
+someDiv.style.width = width1 + "px";
+someDiv.style.height = height1 + "px";
+someDiv.style.backgroundColor = "#123456";
+someDiv.style.position = "absolute";
 
-    const acc = confirm("Do you want to add money?");
-    if (acc) {
-        insertMoney();
-    }
-    else {
-   		alert("make a selection")
-    }
-}
-
-function insertMoney() {
-
-	currentAmount = currentAmount + Number(prompt('how much are you adding'));
-	console.log(currentAmount);
-	start();
+document.body.appendChild(someDiv);
 
 
-	// return getDiff()
-}
+// $('#someDiv').click(function() {
+//   $(this).animate({
+//     left: '+=250'
+//   }, 1500, "easeOutBounce", function() {
+//     // callBack
+//   });
+// });
+
+
+
+$(document).ready(function(){
+    $('#someId').animate({left: '250px'});
+});

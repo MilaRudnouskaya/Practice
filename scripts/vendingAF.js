@@ -19,19 +19,19 @@
 
 // ---
 
-var products = [[1, 2, 3, 4, 5], [6, 7, 8, 9, 10], [11, 12, 13, 14, 15], [16, 17, 18, 19, 20], [21, 22, 23, 24, 25]];
-function x_listItems() {
-		// console.log('x_listItems', j);
-	 		for(j=0; j<=4; j++){
-				for(i=0; i<=4; i++){
-					// console.log("x:",j, i);
-					// document.write(products[j][i]);
-					// document.write("<br>");
-	 			}
-			}
-		}
+// var products = [[1, 2, 3, 4, 5], [6, 7, 8, 9, 10], [11, 12, 13, 14, 15], [16, 17, 18, 19, 20], [21, 22, 23, 24, 25]];
+// function x_listItems() {
+// 		// console.log('x_listItems', j);
+// 	 		for(j=0; j<=4; j++){
+// 				for(i=0; i<=4; i++){
+// 					// console.log("x:",j, i);
+// 					// document.write(products[j][i]);
+// 					// document.write("<br>");
+// 	 			}
+// 			}
+// 		}
 
-x_listItems();
+// x_listItems();
 
 // ---
 
@@ -43,9 +43,21 @@ x_listItems();
 
 // ---
 
+// add: listing code and price for each product
+// select item takes an argument
+// when approved - print "here is your item" + item name
+
+
 var price = 100;
 var currentAmount = 0;
 var products = [[1, 2, 3, 4, 5], [6, 7, 8, 9, 10], [11, 12, 13, 14, 15], [16, 17, 18, 19, 20], [21, 22, 23, 24, 25]];
+
+
+
+
+var setTimeout = function(fn) {
+	fn.call(window);
+}
 
 
 class vendingMachine {
@@ -53,12 +65,24 @@ class vendingMachine {
 	// entry point function - calls all the methods in flow
 	start() {
 		this.listItems();
-		this.selectAction();
+		console.log('this', this);
+
+		// setTimeout(this.selectAction.bind(this), 3000);
+
+		// // setTimeout(() => this.selectAction(), 3000);
+
+
+		// // var _this = this;
+		// setTimeout(function() {
+		// 	_this.selectAction();
+		// }, 3000);
+
+		setTimeout(() => this.selectAction(), 3000);
 	}
 
 	// all other methods
 	selectAction() {
-		var action = prompt("Type a number to select an action: 1.Insert money, 2.Select an item");
+		var action = prompt("Type a number to select an action:\n1. Insert money\n2. Select an item");
 		switch(action) {
 	    case "1":
 	        this.insertMoney();
@@ -71,25 +95,9 @@ class vendingMachine {
 	    }
 	}
 
-	getDiff() {
-    	return price - currentAmount;
-	}
-
-	approveVend() {
- 		var approve = false;
- 		if (this.getDiff() <= 0) {
- 			approve = true;
- 			// cuurentAmount = 0;
- 		}
- 		return approve;
- 	}
-
- 	listItems() {
- 		console.log("asd");
+	listItems() {
  		document.write("Hi, here is the today's selection:");
  		document.write("<br>");
- 		// var j=0;
- 		// var i=0;
  		for(var j=0; j<=4; j++){
 			for(var i=0; i<=4; i++){
 				document.write(products[j][i]);
@@ -98,10 +106,23 @@ class vendingMachine {
 		}
 	}
 
+	getDiff() {
+    	return price - currentAmount;
+	}
+
+	approveVend() {
+ 		var approve = false;
+ 		if (this.getDiff() <= 0) {
+ 			approve = true;
+ 		}
+ 		return approve;
+ 	}
+
  	insertMoney() {
  		var input = Number(prompt("give me money"));
 		currentAmount = currentAmount + input;
 		this.getDiff();
+		// this.selectAction()
 		return this.selectAction();
 	}
 
@@ -109,11 +130,12 @@ class vendingMachine {
 	selectItem() {
    		if (this.approveVend() === true) {
    			alert("here is your item");
+   			// currentAmount = 0;
    		}
    		else {
    			alert("ain't you trying to be smart? add " + this.getDiff());
+   			this.insertMoney();
    		}
-   		return this.selectAction();
    	}
 
 }
@@ -125,6 +147,63 @@ function doYouEvenVendBro() {
 	console.log(vendingMachine1.start()); // call a method of that object
 
 }
+
+
+class X {
+
+	constructor() {
+		this.propA = 'proprety a';
+	}
+	
+
+	test() {
+		console.log('this is', this);
+		this.print();
+	}
+
+	print() {
+		console.log('x.test got called motherfucker');
+	}
+
+}
+
+var a = new X();
+
+// a.do();
+
+
+function invoke(fn) {
+	// fn();
+	// fn.call(fn);
+}
+
+function test() {
+	console.trace('test got called motherfucker');
+}
+
+// test();
+
+// invoke(test);
+
+// invoke(a.do)
+
+// a.test();
+
+// invoke(a.test);
+
+// invoke(function() {
+// 	a.test();
+// });
+
+
+// var fn = function() {
+// 	this.x();
+// 	// console.log('asdasd');
+// }
+
+
+// fn.call({x: function() {console.log('hi Im x')}})
+
 
 doYouEvenVendBro();
 
