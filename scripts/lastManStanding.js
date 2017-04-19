@@ -2,67 +2,81 @@
 // You have X number of people.  Every other person is removed from the game.  Who is last standing?
 // prompt user for the number of users and they output the ‘name’ of the user which is last standing.
 
-// var number = 0;
-
-
-
 
 class lastMan {
 
 	constructor() {
 		this.players = [];
+		this.number = 0;
 	}
 
 	start() {
-		// ask how many ppl playing
-		// create an array of those ppl
-		// do the loops of (killing + print remaining) until one left 
-		// print out the last one
+		this.getNumberOfPlayers(); // ask how many ppl playing
+		this.createListOfPlayers(); // create an array of those ppl
+		this.printRemainingPlayers(); // print the list of ppl
+	
+		// this.killOne();
+		// this.killOne();
+		// this.killOne();
+		// this.killOne();
+		// this.killOne();
+		// this.getVictim();
+		// this.getVictim();
+		// this.getVictim();
+		// this.getVictim();
+		// this.getVictim();
+		// this.getVictim();
+		// this.getVictim();
+		// this.getVictim();
+		// this.getVictim();
+		// this.getVictim();
 
-		// this.getNumberOfPlayers();
-		this.createListOfPlayers();
-		// this.killEmAll();
+		this.killEmAll(); // do the loops of (killing + print remaining) until one left; print out the last one
 	}
 
 	getNumberOfPlayers() {
-		var number = Number(prompt('how many peeps are playing?'));
-		return number;
+		this.number = Number(prompt('how many peeps are playing?'));
+		return this.number;
 	}
 
-
-	// players = Array.from({length: number}, () => Math.floor(Math.random() * 100));
-
 	createListOfPlayers() {
-		// var players = Array.from({length: number}, () => Math.floor(Math.random() * 100));
-		this.getNumberOfPlayers();
-		this.players = Array.from({length: number}, () => Math.floor(Math.random() * 100));
-		for(var i=0;i<players.length;i++){
-			document.write('Dude #' + (i+1) + ' of ' + players.length + "; name: " + players[i] + '<br/>'); 
+		this.players = Array.from({length: this.number}, () => Math.floor(Math.random() * 1000)); 
+		return this.players
+	}
+
+	printRemainingPlayers() {
+		if (this.players.length>1) {
+			for(var i=0;i<this.players.length;i++){
+				document.write('Dude #' + (i+1) + ' of ' + this.players.length + "; name: " + this.players[i] + '<br/>'); 
+			}
 		}
+		else {
+			document.write('Winner is ' + this.players[0]);
+		}
+		
+	}
+
+	getVictim() {
+		this.victimIndex = Math.floor(Math.random() * (this.number));
+		this.victimName = this.players[this.victimIndex];
+		return document.write('Executed -  ' + this.victimIndex + "; name: " + this.victimName + '<br/>');
+	}
+
+	killOne() {
+		this.getVictim();
+		this.players.splice(this.victimIndex, 1);
 	}
 
 	killEmAll() {
-		for(var i=0;i<number;i++){
+		for(var i=0;i<this.players.length-1;i++){
 			document.write('round ' + (i+1) + '<br/>');
-			players.splice( Math.floor(Math.random() * (number-1)), 1 );
-			number = number -1;
-		// 	document.write('Dude #' + (i+1) + ' of ' + players.length + "; name: " + players[i] + '<br/>'); 
+			this.killOne();
+			this.printRemainingPlayers();
 
-
-		// for(var i=0;i<players.length;i++){
-		// 	document.write('Dude #' + (i+1) + ' of ' + players.length + "; name: " + players[i] + '<br/>'); 
-		}
+			}
+			// this.number=this.number-1;
 	}
-
-	// return {
-	// 	players: createListOfPlayers;
-
-	// }
-
-
-
 }
-
 
 
 var lastMan1 = new lastMan();
