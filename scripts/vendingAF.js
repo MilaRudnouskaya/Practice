@@ -11,23 +11,48 @@
 
 
 // ---
-// var rows = [1, 2, 3, 4, 5];
-// var cols = ["a", "b", "c", "d"];
+var rows = [1, 2, 3, 4, 5];
+var cols = ["a", "b", "c", "d", "e"];
+
+
+// ---
+
+var p = {
+	'1_1': 'coke',
+	'1_2': 'fanta',
+	'2_1': 'pepsi',
+	'2_2': 'sprite',
+}
+
+var products = [
+["coke", 2, 3, 4, 5],
+[6, 7, "jimmy", 9, 10],
+[11, 12, 13, 14, 15],
+[16, 17, 18, 19, 20],
+[21, 22, 23, 24, 25]
+];
 
 // var grid = [ for (r of rows) [ for (c of cols) r+c ] ];
 // console.log(grid[0][0])
 
-// ---
-
-var products = [[1, 2, 3, 4, 5], [6, 7, 8, 9, 10], [11, 12, 13, 14, 15], [16, 17, 18, 19, 20], [21, 22, 23, 24, 25]];
 function x_listItems() {
 		// console.log('x_listItems', j);
-	 		for(j=0; j<=4; j++){
-				for(i=0; i<=4; i++){
+			var row = [1, 2];
+			console.log(row.join(' '));
+
+			// for (var h = 0; h < 2; h++) {
+			// 	console.log()
+			// }
+	 		for(j=0; j < 2; j++){
+	 			var col = [cols[j] + '|'];
+				for(i=0; i < 2; i++){
+					col.push(p[(j+1) + '_' + (i+1)]);
+					// row.push(rows[j] + ',' + cols[i])
 					// console.log("x:",j, i);
 					// document.write(products[j][i]);
 					// document.write("<br>");
 	 			}
+	 			console.log(col.join(' '));
 			}
 		}
 
@@ -126,7 +151,7 @@ function doYouEvenVendBro() {
 
 }
 
-doYouEvenVendBro();
+// doYouEvenVendBro();
 
 
 
