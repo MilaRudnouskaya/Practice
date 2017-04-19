@@ -14,12 +14,16 @@
 // when approved - print "here is your item" + item name
 
 
-var price = 100;
-var currentAmount = 0;
-var products = [[1, 2, 3, 4, 5], [6, 7, 8, 9, 10], [11, 12, 13, 14, 15], [16, 17, 18, 19, 20], [21, 22, 23, 24, 25]];
+
 
 
 class vendingMachine {
+
+	constructor() {
+		this.price = 100;
+		this.currentAmount = 0;
+		this.products = [[1, 2, 3, 4, 5], [6, 7, 8, 9, 10], [11, 12, 13, 14, 15], [16, 17, 18, 19, 20], [21, 22, 23, 24, 25]];
+	}
 
 	start() {
 		this.listItems();
@@ -45,14 +49,14 @@ class vendingMachine {
  		document.write("<br>");
  		for(var j=0; j<=4; j++){
 			for(var i=0; i<=4; i++){
-				document.write(products[j][i]);
+				document.write(this.products[j][i]);
 				document.write("<br>");
  			}
 		}
 	}
 
 	getDiff() {
-    	return price - currentAmount;
+    	return this.price - this.currentAmount;
 	}
 
 	approveVend() {
@@ -65,7 +69,7 @@ class vendingMachine {
 
  	insertMoney() {
  		var input = Number(prompt("give me money"));
-		currentAmount = currentAmount + input;
+		this.currentAmount = this.currentAmount + input;
 		this.getDiff();
 		// this.selectAction()
 		return this.selectAction();
