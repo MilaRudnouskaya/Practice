@@ -1,5 +1,6 @@
 // Who is last out
 // You have X number of people.  Each round a random person is removed from the game.  Who is last standing?
+//final & pretty version
 
 
 
