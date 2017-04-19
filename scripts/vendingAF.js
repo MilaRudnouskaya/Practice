@@ -21,25 +21,11 @@ var products = [[1, 2, 3, 4, 5], [6, 7, 8, 9, 10], [11, 12, 13, 14, 15], [16, 17
 
 class vendingMachine {
 
-	// entry point function - calls all the methods in flow
 	start() {
 		this.listItems();
-		console.log('this', this);
-
-		// setTimeout(this.selectAction.bind(this), 3000);
-
-		// // setTimeout(() => this.selectAction(), 3000);
-
-
-		// // var _this = this;
-		// setTimeout(function() {
-		// 	_this.selectAction();
-		// }, 3000);
-
 		setTimeout(() => this.selectAction(), 3000);
 	}
 
-	// all other methods
 	selectAction() {
 		var action = prompt("Type a number to select an action:\n1. Insert money\n2. Select an item");
 		switch(action) {
