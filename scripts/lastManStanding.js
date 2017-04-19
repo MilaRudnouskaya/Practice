@@ -1,6 +1,6 @@
 // Who is last out
-// You have X number of people.  Every other person is removed from the game.  Who is last standing?
-// prompt user for the number of users and they output the ‘name’ of the user which is last standing.
+// You have X number of people.  Each round a random person is removed from the game.  Who is last standing?
+
 
 
 class lastMan {
@@ -13,24 +13,7 @@ class lastMan {
 	start() {
 		this.getNumberOfPlayers(); // ask how many ppl playing
 		this.createListOfPlayers(); // create an array of those ppl
-		this.printRemainingPlayers(); // print the list of ppl
-	
-		// this.killOne();
-		// this.killOne();
-		// this.killOne();
-		// this.killOne();
-		// this.killOne();
-		// this.getVictim();
-		// this.getVictim();
-		// this.getVictim();
-		// this.getVictim();
-		// this.getVictim();
-		// this.getVictim();
-		// this.getVictim();
-		// this.getVictim();
-		// this.getVictim();
-		// this.getVictim();
-
+		this.printPlayers(); // print the list of ppl
 		this.killEmAll(); // do the loops of (killing + print remaining) until one left; print out the last one
 	}
 
@@ -44,7 +27,7 @@ class lastMan {
 		return this.players
 	}
 
-	printRemainingPlayers() {
+	printPlayers() {
 		if (this.players.length>1) {
 			for(var i=0;i<this.players.length;i++){
 				document.write('Dude #' + (i+1) + ' of ' + this.players.length + "; name: " + this.players[i] + '<br/>'); 
@@ -57,24 +40,18 @@ class lastMan {
 	}
 
 	getVictim() {
-		this.victimIndex = Math.floor(Math.random() * (this.number));
+		this.victimIndex = Math.floor(Math.random() * (this.players.length));
 		this.victimName = this.players[this.victimIndex];
-		return document.write('Executed -  ' + this.victimIndex + "; name: " + this.victimName + '<br/>');
-	}
-
-	killOne() {
-		this.getVictim();
-		this.players.splice(this.victimIndex, 1);
+		return document.write('Executed - #' + (this.victimIndex + 1) + "; name: " + this.victimName + '<br/>' + '<br/>');
 	}
 
 	killEmAll() {
-		for(var i=0;i<this.players.length-1;i++){
-			document.write('round ' + (i+1) + '<br/>');
-			this.killOne();
-			this.printRemainingPlayers();
-
+		for(var i=0;i<this.number-1;i++){
+			document.write('<br/>' + 'round ' + (i+1) + '<br/>');
+			this.getVictim();
+			this.players.splice(this.victimIndex, 1);
+			this.printPlayers();
 			}
-			// this.number=this.number-1;
 	}
 }
 
